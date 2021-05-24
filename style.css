@@ -5,3 +5,43 @@ html, body {
 canvas{
   border: 2px solid black;
 }
+.customInput {
+  width:200px;
+  height:30px;
+  border:1px solid #fea834;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #DAF8FF;
+}
+.customButton {
+  width: 200px;
+  height: 60px;
+  background-color: #fea834;
+  border: none;
+  font-weight: bold;
+  padding: 15px 32px;
+  border-radius: 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.customButton1 {
+  width: 80px;
+  height: 40px;
+  background-color: #fea834;
+  border: none;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.customHeading {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+  text-shadow: black 4px 4px 5px; 
+  text-decoration: underline;
+}

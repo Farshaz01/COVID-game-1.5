@@ -30,25 +30,35 @@ class Game {
     }
 
     car1 = createSprite(100,200);
+    car1.addImage("car1", carImg1);
     car2 = createSprite(300,200);
+    car2.addImage("car2", carImg2);
     car3 = createSprite(500,200);
+    car3.addImage("car3", carImg3);
     car4 = createSprite(700,200);
+    car4.addImage("car4", carImg4);
     cars = [car1, car2, car3, car4];
+
+    virus = createSprite(width/2, height-50);
+    virus.addImage("virus", virusImg);
+    virus.scale = 0.1;
   }
 
   play(){
     form.hide();
 
     Player.getPlayerInfo();
-    
+    player.getCarsAtEnd();
+
     if(allPlayers !== undefined){
       //var display_position = 100;
-      
+      background(GroundImg);
+      image(trackImg, 0, -displayHeight * 4, displayWidth, displayHeight * 5);
       //index of the array
       var index = 0;
 
       //x and y position of the cars
-      var x = 0;
+      var x = 175;
       var y;
 
       for(var plr in allPlayers){
@@ -61,11 +71,16 @@ class Game {
         y = displayHeight - allPlayers[plr].distance;
         cars[index-1].x = x;
         cars[index-1].y = y;
+        
+        virus.x = cars[index-1].x;
+        virus.y = cars[index-1].y + 250;
 
         if (index === player.index){
+          fill("red");
+          ellipse(x, y, 60, 60)
           cars[index - 1].shapeColor = "red";
           camera.position.x = displayWidth/2;
-          camera.position.y = cars[index-1].y
+          camera.position.y = cars[index-1].y - 20;
         }
        
         //textSize(15);
@@ -78,7 +93,21 @@ class Game {
       player.distance +=10
       player.update();
     }
+    if (player.distance > 4260) {
+      player.rank += 1;
+      Player.updateCarsAtEnd(player.rank);
+      swal({
+        title: `Awesome!${"\n"}Rank${"\n"}${player.rank}`,
+        text: "Game ended!",
+        icon: "images/trophy.jpg",
+        button: "OK!",
+      });
+      gameState = 2;
+    }
 
     drawSprites();
+  }
+  end() {
+    console.log("Game Ended!");
   }
 }
